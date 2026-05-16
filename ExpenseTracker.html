@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KharchaDekh</title>
+  <link rel="stylesheet" href="ExpenseTracker.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="brand">
+        <h1><span>Kharcha</span><span>Dekh</span></h1>
+        <p>Hey Aman! Track your income & expenses</p>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <button class="btn" id="themeToggleBtn">🌙</button>
+        <button class="btn btn-danger" id="clearAllBtn">🗑 Clear All</button>
+      </div>
+    </header>
+
+    <div class="grid">
+      <div class="stack">
+        <section class="card card-pad">
+          <div class="summary">
+            <div class="balance-box">
+              <div>
+                <div class="label">Balance</div>
+                <div class="balance-amount" id="balanceAmount">₹0.00</div>
+              </div>
+              <div class="balance-icon">⚖️</div>
+            </div>
+            <div class="stat-box income-box">
+              <div class="label">Total Income</div>
+              <div class="stat-value" id="incomeAmount">₹0.00</div>
+            </div>
+            <div class="stat-box expense-box">
+              <div class="label">Total Expenses</div>
+              <div class="stat-value" id="expenseAmount">₹0.00</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card card-pad">
+          <div class="transactions-head">
+            <h2 class="section-title">Transactions</h2>
+            <div class="records" id="recordCount">0 records</div>
+          </div>
+
+          <div class="toolbar">
+            <div class="tabs" id="filterTypeTabs">
+              <button class="tab active" data-filter="all">All</button>
+              <button class="tab" data-filter="income">Income</button>
+              <button class="tab" data-filter="expense">Expense</button>
+            </div>
+
+            <select id="categoryFilter">
+              <option value="all">All Categories</option>
+            </select>
+
+            <select id="sortFilter">
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+              <option value="highest">Highest Amount</option>
+              <option value="lowest">Lowest Amount</option>
+            </select>
+          </div>
+
+          <div id="transactionList" class="transaction-list"></div>
+        </section>
+
+        <section class="card card-pad">
+          <h2 class="section-title">📊 Spending by Category</h2>
+          <div id="chartWrap" class="chart-wrap"></div>
+        </section>
+      </div>
+
+      <aside class="card card-pad">
+        <h2 class="section-title">➕ Add Transaction</h2>
+
+        <div class="type-switch">
+          <button class="pill active-income" id="incomeTypeBtn" data-type="income">⬆ Income</button>
+          <button class="pill" id="expenseTypeBtn" data-type="expense">⬇ Expense</button>
+        </div>
+
+        <form id="transactionForm" class="form-grid">
+          <div class="field">
+            <label for="description">Description</label>
+            <input type="text" id="description" placeholder="Enter description" required />
+          </div>
+
+          <div class="field">
+            <label for="amount">Amount (₹)</label>
+            <input type="number" id="amount" placeholder="Enter amount" min="0.01" step="0.01" required />
+          </div>
+
+          <div class="field">
+            <label for="date">Date</label>
+            <input type="date" id="date" required />
+          </div>
+
+          <div class="field">
+            <label for="category">Category</label>
+            <select id="category" required></select>
+          </div>
+
+          <button type="submit" class="submit-btn">Add Transaction</button>
+        </form>
+      </aside>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="ExpenseTracker.js" defer></script>
+</body>
+</html>
